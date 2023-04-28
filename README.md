@@ -2,6 +2,11 @@ Kelvin Nguyen
 CIS 3920
 Term Project Report
 Anti-Lgbtq Hatecrimes and Anti-Lgbtq Legislation in 2021
+
+How to view code: 
+
+code is under the IPYNB file as 'cis2920project'
+
 Problem
 
 Does the number of anti-lgbtq hate crimes correlate to number of anti-lgbtq legislation passed within the same year?
