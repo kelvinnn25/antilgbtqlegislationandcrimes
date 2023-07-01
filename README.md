@@ -64,13 +64,117 @@ j.	Rpart.plot
 k.	GGally
 l.	dyplr
 
+Analysis and Results
+
+![Screenshot 2023-06-30 194548](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/62da1852-26d5-4b7b-a8a3-55f5d2fa0e9b)
+
+This is the summary of the dataset when fully aggregated and named merged. This includes hate crime data per state, total laws (and types), population, # and % of either democrat or republican per state, and senate/house majority. 
+
+Total anti-lgbtq hatecrimes equate to 1590, and 170 anti-lgbtq laws passed. 
+There is an average of 31.8 anti-lgbtq hatecrimes per state and 3.4 anti-lgbtq legislation passed. 
+
+![Screenshot 2023-06-30 194609](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/849a520b-e819-4542-8dcb-f890a63a273d)
+
+above is the graph of number of anti-lgbtq hatecrimes
+
+![Screenshot 2023-06-30 194619](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/b96d7188-60bd-4e8b-9e9e-21ed823a0054)
+
+above is the graph of number of anti-lgbtq legislation 
+Regression: 
+
+![Screenshot 2023-06-30 194632](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/928781c7-232b-4c09-b724-093a9488c00d)
+
+
+In the image above, it is evident that linear regression was not successful given that there was a very high value of p of 0.14 and low correlation coefficient of .207. Therefore it is safe to assume that there is no linear correlation between the number of anti-lgbtq laws passed and anti-lgbtq hatecrimes. Below are the residuals and Q-Q plot.
+
+![Screenshot 2023-06-30 194643](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/8eabf8dd-d321-414c-a4f0-ccb3d6be63e5)
+
+As we can see here, simple linear regression is too sensitive to the data here to outliers. In addition, the Q-Q plot has data points that somewhat fall on the line but there is too much data that simply do not fit into this distribution with high outliers. Considering this model had an RSE of 33.29 on 48 degrees of freedom, this model performed poorly.
+
+So we thought of a solution using lgbtq crime as a percentage of all hate crimes per state and modeled it. 
+
+![Screenshot 2023-06-30 194654](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/06fd5354-deb9-46e3-a90e-d533e1246f0e)
+
+
+It performed poorly too. The correlation coefficient came out to be .055 and here is the summary of the model. Therefore it was concluded that there is no linear correlation for this dataset. 
+
+
+![Screenshot 2023-06-30 194707](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/d17da76c-f7c7-4983-879e-d8ffc95048d8)
+
+
+Support Vector machines: 
+
+First I labeled each state based on their senate majority. 0=democrat 1= republican 
+Using hate crimes as response variable and total anti-lgbtq as predictor variable:
+
+![Screenshot 2023-06-30 194720](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/3e15e6be-723f-4d65-b6c9-48c796f91717)
+
+Now we split the data with a .75, .25 ratio
+
+
+![Screenshot 2023-06-30 194739](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/09e2b28f-3952-45fd-ac7f-315b0a80b88e)
+
+Train set using strictly 0= democrat and 1= republican, crimeSum as response variable.
+Test set results:
+![Screenshot 2023-06-30 194752](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/cad7d9e8-cd5a-49ff-b753-694da28eb9c5)
+
+Confusion matrix for test set: 
+
+![Screenshot 2023-06-30 194804](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/d7a52b0f-47c5-4d48-a981-fc53011abceb)
+
+In the confusion matrix above:
+
+![Screenshot 2023-06-30 194814](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/034df646-4828-44bb-ae7d-a87fa793182a)
+
+remember that 0 is Democrat and 1 is Republican majority Senate
+- 2 false Democratic
+- 1 false Republican
+- 3 correct for Democratic
+- 6 correct for Republican
+
+
+- 75% accuracy rate
+- 8.33% false republican rate
+- 16.67% false democratic
+
+
+I will discuss these results in the next section of the paper, but I still need to present the results for the random forest model. 
+
+
+Random Forest, plot of actual DEM vs REP senate counts
+
+![Screenshot 2023-06-30 194824](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/0b39fd75-9171-4482-98e4-dff0a4bd2e5b)
+
+Dataset used to predict, removed Democratic count for 2020 election, Republican count, to avoid better predictions.
+
+![Screenshot 2023-06-30 194835](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/aeec0376-37d8-42b3-ad8b-21c7b1b4031d)
+
+
+Prediction for train: 100% accuracy 
+
+![Screenshot 2023-06-30 194845](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/28264325-4944-436e-b0e9-b5dae898abeb)
+
+
+Prediction for test 87.5% accuracy rate
+![Screenshot 2023-06-30 194856](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/afd1de90-0e99-49f1-b978-0ad326641ab3)
+
+Random forest graph
+![Screenshot 2023-06-30 194907](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/bdeb460e-1c06-4a50-a217-b71f077752d4)
+
+![Screenshot 2023-06-30 194919](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/2a471504-c107-41e2-92f1-95c2300ff667)
+
+
+![Screenshot 2023-06-30 194929](https://github.com/kelvinnn25/antilgbtqlegislationandcrimes/assets/80852728/0f8d1d28-9323-4591-bf88-d38b19c68cef)
+
+As we can see from the results, Anti-Freq laws had the most importance when splitting the data into democratic/republican majority states.
+
 Summary: 
 
-Out of the three models, the only one with success was random forest in order to classify senate majority of the state, which contributes to the state’s laws. It was able to have a 100% training set prediction rate and 87.5% testing set prediction rate. Else, regression and SVM models performed very poor. In the random forest, predictors included total anti-lgbtq hate crimes and total anti-lgbtq legislation grouped by state, ass well as population and number of presidential democratic and republican voter count, and lastly lgbtq hate crime percentage compared to cumulative hate crimes. This is considered a success, being that the most influential variable according to the GINI index would be antiFreq which was the count of anti-lgbtq laws. 
+Out of the three models, the only one with success was random forest in order to classify senate majority of the state, which contributes to the state’s laws. It was able to have a 100% training set prediction rate and 87.5% testing set prediction rate. Else, regression and SVM models performed very poor. In the random forest, predictors included total anti-lgbtq hate crimes and total anti-lgbtq legislation grouped by state, ass well as population and a number of presidential democratic and republican voter count, and lastly, LGBTQ hate crime percentage compared to cumulative hate crimes. This is considered a success, being that the most influential variable according to the GINI index would be antiFreq which was the count of anti-LGBTQ laws. 
 
 Struggles and Roadblocks:
 
-The main priorities I had with this project was assessing the years 2022 and 2023, for having back to back record breaking anti-lgbtq legislation. Prior to 2021, we experienced a pandemic which significantly decreased hatecrimes for that year due to quarantine. In addition, just within the first quarter of 2023, there has been over 400 anti-lgbtq legislation, where in 2021 there was 158, and in 2022 there was 180, according to the ACLU’s data depicted by CNN below.
+My main priority with this project was assessing the years 2022 and 2023, for having back-to-back record-breaking anti-LGBTQ legislation. Prior to 2021, we experienced a pandemic that significantly decreased hate crimes for that year due to quarantine. In addition, just within the first quarter of 2023, there have been over 400 anti-LGBTQ legislation, where in 2021 there were 158, and in 2022 there were 180, according to the ACLU’s data depicted by CNN below.
  
 However, when I requested datasets from the FBI for either 2022 or whatever was recorded of 2023 hatecrimes, they were unable to give me the information. In addition, a major roadblock encountered was the ACLU’s data for 2021, stating that they were unable to give me datasets for that too, therefore a significant portion of my efforts on this project included data scraping off of their public archives. 
 Also, it is important to mention that there is a potential huge margin of error for hatecrimes based on how state agencies report them. You can find more information at this link. There could be a huge number of crimes that go unreported each year due to intimidation or overlooking certain aspects. There is potential that one’s own ideological beliefs or tolerance for the acknowledgement of other’s beliefs may have led to either overreported or underreported crimes. For instance when running the regression for total crime sums I ran into many outliers. 
