@@ -1,6 +1,6 @@
 Kelvin Nguyen 
 CIS 3920
-Term Project Report
+Term Research Report
 Anti-Lgbtq Hatecrimes and Anti-Lgbtq Legislation in 2021
 
 How to view code: 
