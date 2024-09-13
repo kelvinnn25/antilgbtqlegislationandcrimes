@@ -1,11 +1,7 @@
 Kelvin Nguyen 
-CIS 3920
-Term Research Report
 Anti-Lgbtq Hatecrimes and Anti-Lgbtq Legislation in 2021
 
 How to view code: 
-
-code is under the IPYNB file as 'cis2920project'
 
 Problem
 
